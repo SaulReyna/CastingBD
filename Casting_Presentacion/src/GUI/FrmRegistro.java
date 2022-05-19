@@ -39,10 +39,10 @@ public class FrmRegistro extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         btnRegistrar = new javax.swing.JButton();
         txtUsuario = new javax.swing.JTextField();
-        txtContrasenia = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
         txtTelefono = new javax.swing.JTextField();
         txtCurp = new javax.swing.JTextField();
+        txtContrasenia = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnIniciarSesion = new javax.swing.JButton();
@@ -81,14 +81,6 @@ public class FrmRegistro extends javax.swing.JFrame {
         });
         getContentPane().add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 340, 56));
 
-        txtContrasenia.setBackground(new java.awt.Color(204, 204, 204));
-        txtContrasenia.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtContraseniaKeyTyped(evt);
-            }
-        });
-        getContentPane().add(txtContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, 340, 56));
-
         txtNombre.setBackground(new java.awt.Color(204, 204, 204));
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -106,12 +98,24 @@ public class FrmRegistro extends javax.swing.JFrame {
         getContentPane().add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(457, 200, 340, 56));
 
         txtCurp.setBackground(new java.awt.Color(204, 204, 204));
+        txtCurp.setAutoscrolls(false);
         txtCurp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCurpKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCurpKeyTyped(evt);
             }
         });
         getContentPane().add(txtCurp, new org.netbeans.lib.awtextra.AbsoluteConstraints(457, 290, 340, 56));
+
+        txtContrasenia.setBackground(new java.awt.Color(204, 204, 204));
+        txtContrasenia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtContraseniaKeyTyped(evt);
+            }
+        });
+        getContentPane().add(txtContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 340, 50));
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("___________________________________________________________________________________________________________");
@@ -222,55 +226,38 @@ public class FrmRegistro extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-        int key = evt.getKeyChar();
-
-        boolean mayusculas = key >= 65 && key <= 90;
-        boolean minusculas = key >= 97 && key <= 122;
-        boolean espacio = key == 32;
-
-         if (!(minusculas || mayusculas || espacio))
-        {
-            evt.consume();
-        }
-        if (txtNombre.getText().trim().length() == 30) {
-            evt.consume();
-        }
+        if(!Character.isLetter(evt.getKeyChar()) && !Character.isSpaceChar(evt.getKeyChar())){
+        evt.consume();}
     }//GEN-LAST:event_txtNombreKeyTyped
 
     private void txtCurpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCurpKeyTyped
-        txtCurp.setText(txtCurp.getText().trim());
-        if (txtCurp.getText().trim().length()== 15){
-                evt.consume(); 
-            }
+        if(Character.isWhitespace(evt.getKeyChar()) && !Character.isLetterOrDigit(evt.getKeyChar())){
+            evt.consume();
+        }
     }//GEN-LAST:event_txtCurpKeyTyped
 
     private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
-        int key = evt.getKeyChar();
-        boolean numeros = key >= 48 && key <= 57;
-        
-        if (!numeros)
-        {
-            evt.consume();
-        }
-
-        if (txtTelefono.getText().trim().length() == 15) {
+        if(!Character.isDigit(evt.getKeyChar()) || txtTelefono.getText().length() >= 10){
             evt.consume();
         }
     }//GEN-LAST:event_txtTelefonoKeyTyped
 
     private void txtUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyTyped
-        txtCurp.setText(txtCurp.getText().trim());
-        if (txtCurp.getText().trim().length()== 15){
-                evt.consume(); 
-            }
+        if(Character.isSpaceChar(evt.getKeyChar())){
+        evt.consume();}
     }//GEN-LAST:event_txtUsuarioKeyTyped
 
     private void txtContraseniaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContraseniaKeyTyped
-        txtCurp.setText(txtCurp.getText().trim());
-        if (txtCurp.getText().trim().length()== 120){
-                evt.consume(); 
-            }
+        // TODO add your handling code here:
+        if(Character.isSpaceChar(evt.getKeyChar())){
+            evt.consume();
+        }
     }//GEN-LAST:event_txtContraseniaKeyTyped
+
+    private void txtCurpKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCurpKeyReleased
+        // TODO add your handling code here:
+        txtCurp.setText(txtCurp.getText().toUpperCase());
+    }//GEN-LAST:event_txtCurpKeyReleased
 
     private void centrarVentana() {
         Dimension screenSize, frameSize;
@@ -313,7 +300,7 @@ public class FrmRegistro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField txtContrasenia;
+    private javax.swing.JPasswordField txtContrasenia;
     private javax.swing.JTextField txtCurp;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtTelefono;

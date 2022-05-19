@@ -39,7 +39,7 @@ public class FrmLogin extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         btnIngresar = new javax.swing.JButton();
         txtUsuario = new javax.swing.JTextField();
-        txtContrasenia = new javax.swing.JTextField();
+        txtContrasenia = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnRegistrar = new javax.swing.JButton();
@@ -67,12 +67,22 @@ public class FrmLogin extends javax.swing.JFrame {
         });
         getContentPane().add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 307, 85));
 
-        txtUsuario.setBackground(new java.awt.Color(204, 204, 204));
+        txtUsuario.setBackground(new java.awt.Color(255, 255, 255));
         txtUsuario.setToolTipText("s");
-        getContentPane().add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 307, 56));
+        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUsuarioKeyTyped(evt);
+            }
+        });
+        getContentPane().add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 310, 56));
 
-        txtContrasenia.setBackground(new java.awt.Color(204, 204, 204));
-        getContentPane().add(txtContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, 307, 56));
+        txtContrasenia.setBackground(new java.awt.Color(255, 255, 255));
+        txtContrasenia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtContraseniaKeyTyped(evt);
+            }
+        });
+        getContentPane().add(txtContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, 310, 60));
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("_____________________________________________________________");
@@ -159,6 +169,19 @@ public class FrmLogin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnIngresarActionPerformed
 
+    private void txtContraseniaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContraseniaKeyTyped
+        // TODO add your handling code here:
+        if(Character.isSpaceChar(evt.getKeyChar())){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtContraseniaKeyTyped
+
+    private void txtUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyTyped
+        // TODO add your handling code here:
+        if(Character.isSpaceChar(evt.getKeyChar())){
+        evt.consume();}
+    }//GEN-LAST:event_txtUsuarioKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -231,7 +254,7 @@ public class FrmLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JTextField txtContrasenia;
+    private javax.swing.JPasswordField txtContrasenia;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
